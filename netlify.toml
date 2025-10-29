@@ -4,10 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  NPM_FLAGS = "--prefix=."
-
-[context.production.environment]
-  NODE_ENV = "production"
+  NPM_FLAGS = "--include=dev"
 
 [[redirects]]
   from = "/*"
