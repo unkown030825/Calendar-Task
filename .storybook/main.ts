@@ -14,14 +14,14 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  async viteFinal(config) {
-    // Add Tailwind CSS support
-    config.css = {
-      postcss: {
-        plugins: [require('@tailwindcss/vite')()],
-      },
-    }
-    return config
+  typescript: {
+    check: false,
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    },
   },
 }
+
 export default config
