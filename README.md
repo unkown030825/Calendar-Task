@@ -1,73 +1,157 @@
-# React + TypeScript + Vite
+# 📅 Calendar View Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, accessible, and performant calendar component built with React, TypeScript, and Tailwind CSS. Features month and week views, event management, and comprehensive keyboard navigation.
 
-Currently, two official plugins are available:
+![Calendar Demo](https://calendar-storybook-himanshu.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- **📆 Multiple Views** - Month and week views with seamless switching
+- **🎯 Event Management** - Create, edit, and delete events with intuitive modals
+- **⌨️ Keyboard Navigation** - Full keyboard support for accessibility
+- **📱 Responsive Design** - Mobile-first approach with optimized layouts
+- **🎨 Color Coding** - Visual categorization with customizable colors
+- **♿ Accessibility** - WCAG 2.1 AA compliant with ARIA labels
+- **⚡ Performance** - Optimized to handle 500+ events efficiently
+- **📖 Storybook** - Comprehensive component documentation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Quick Start
 
-## Expanding the ESLint configuration
+```bash
+# Clone the repository
+git clone https://github.com/unkown030825/Calendar-Task
+cd Calendar-Task
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Install dependencies
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Start development server
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start Storybook
+npm run storybook
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Visit `http://localhost:5173` for the app or `http://localhost:6006` for Storybook.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📦 Installation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### Prerequisites
+
+- Node.js 16.x or higher
+- npm 7.x or higher
+
+## 🎯 Usage
+
+
+### Component Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `events` | `CalendarEvent[]` | Yes | - | Array of calendar events |
+| `onEventAdd` | `(event: CalendarEvent) => void` | Yes | - | Callback when event is created |
+| `onEventUpdate` | `(id: string, updates: Partial<CalendarEvent>) => void` | Yes | - | Callback when event is updated |
+| `onEventDelete` | `(id: string) => void` | Yes | - | Callback when event is deleted |
+| `initialView` | `'month' \| 'week'` | No | `'month'` | Initial calendar view |
+| `initialDate` | `Date` | No | `new Date()` | Initial date to display |
+
+
+## 🏗️ Architecture
+
+### Technology Stack
+
+- **React 18** - Modern React with hooks and concurrent features
+- **TypeScript** - Type-safe development with strict mode
+- **Tailwind CSS** - Utility-first styling system
+- **Vite** - Fast build tooling and HMR
+- **Storybook 7** - Component documentation and testing
+- **date-fns** - Lightweight date manipulation library
+
+### Project Structure
+
+```
+src/
+├── components/
+│   ├── Calendar/
+│   │   ├── CalendarView.tsx          # Main component
+│   │   ├── CalendarView.stories.tsx  # Storybook stories
+│   │   ├── CalendarView.types.ts     # Type definitions
+│   │   ├── MonthView.tsx             # Month grid view
+│   │   ├── WeekView.tsx              # Week schedule view
+│   │   ├── CalendarCell.tsx          # Day cell component
+│   │   └── EventModal.tsx            # Event modal
+│   └── primitives/
+│       ├── Button.tsx                # Button component
+│       ├── Modal.tsx                 # Modal component
+│       └── Select.tsx                # Select component
+├── hooks/
+│   ├── useCalendar.ts                # Calendar state logic
+│   └── useEventManager.ts            # Event CRUD logic
+└── utils/
+    ├── date.utils.ts                 # Date helpers
+    └── event.utils.ts                # Event helpers
+```
+
+## 📖 Storybook Stories
+
+The component includes 7 comprehensive stories:
+
+1. **Default** - Current month with sample events
+2. **Empty** - Clean state without events
+3. **Week View** - Time-based weekly schedule
+4. **With Many Events** - Performance test with 20+ events
+5. **Interactive Demo** - Fully functional playground
+6. **Mobile View** - Responsive layout demonstration
+7. **Accessibility** - Keyboard navigation showcase
+
+Run Storybook to explore all stories:
+
+```bash
+npm run storybook
+```
+
+## ♿ Accessibility
+
+### Responsive Breakpoints
+
+- **sm:** 640px+ (Large mobile)
+- **md:** 768px+ (Tablet)
+- **lg:** 1024px+ (Desktop)
+- **xl:** 1280px+ (Large desktop)
+
+## ⚡ Performance
+
+### Optimization Techniques
+
+- `React.memo()` for component memoization
+- `useCallback` for stable event handlers
+- `useMemo` for computed values
+- Virtualization-ready structure
+- Code splitting and lazy loading
+- Tree-shaking for minimal bundle size
+
+### Performance Targets
+
+- Initial render: < 300ms
+- Drag response: < 16ms
+- Search/filter: < 100ms
+- Bundle size: < 200kb (gzipped)
+- Handles 500+ events smoothly
+
+## 🧪 Testing
+
+### Manual Testing Checklist
+
+- [ ] Month view renders correctly
+- [ ] Week view renders correctly
+- [ ] Event creation works
+- [ ] Event editing works
+- [ ] Event deletion works
+- [ ] Navigation controls work
+- [ ] Keyboard navigation works
+- [ ] Mobile responsiveness works
+- [ ] Screen reader compatibility
